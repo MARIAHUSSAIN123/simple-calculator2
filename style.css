@@ -1,0 +1,121 @@
+:root {
+    --page: #dfe9ef;
+    --card: #ffffff;
+    --ink: #1c2b36;
+    --muted: #6b7f8c;
+    --line: #c5d3dc;
+    --brand: #1f6f8b;
+    --brand-dark: #165469;
+    --focus: #f0a202;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--page);
+}
+
+body {
+    /* The page has no wrapper div, so the body itself becomes the calculator card */
+    width: min(92vw, 420px);
+    margin: 48px auto;
+    padding: 28px 24px 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    background: var(--card);
+    color: var(--ink);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(28, 43, 54, 0.15);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+h1 {
+    grid-column: 1 / -1;
+    margin: 0 0 8px;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+/* Two number fields, side by side */
+input[type="number"] {
+    grid-column: span 2;
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    background: #f7fafc;
+    color: var(--ink);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+input[type="number"]::placeholder {
+    color: var(--muted);
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--brand);
+    background: #fff;
+}
+
+/* Four operator buttons in one row */
+button {
+    padding: 14px 0;
+    border: none;
+    border-radius: 8px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background: var(--brand-dark);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+}
+
+/* Result */
+#result {
+    grid-column: 1 / -1;
+    min-height: 3.2rem;
+    margin: 8px 0 0;
+    padding: 12px;
+    border-radius: 8px;
+    background: #eef4f7;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    word-break: break-all;
+}
+
+#result:empty {
+    visibility: hidden;
+}
+
+/* Small screens: stack the two inputs */
+@media (max-width: 360px) {
+    input[type="number"] {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
